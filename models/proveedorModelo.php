@@ -42,4 +42,7 @@ class proveedorModelo extends mainModel
         $sql->execute();
         return $sql;
     }
+
+    // modelo para actualizar proveedor
+    protected static function actualizar_proveedor_modelo($datos) {}
 }

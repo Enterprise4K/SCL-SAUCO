@@ -312,7 +312,7 @@ class proveedorControlador extends proveedorModelo
     {
         $tipo = mainModel::limpiar_cadena($tipo);
 
-        $id = mainModel::encryption($id);
+        $id = mainModel::decryption($id);
         $id = mainModel::limpiar_cadena($id);
 
         return proveedorModelo::datos_proveedor_modelo($tipo, $id);

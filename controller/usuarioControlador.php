@@ -312,11 +312,11 @@ class usuarioControlador extends usuarioModelo
                             <td>' . $rows['Cuenta_Usuario'] . '</td>
                             <td>' . $rows['Cuenta_Email'] . '</td>
                             <td class="table-action">
-                                <a href="' . SERVERURL . 'usuario-actualizar/' . mainModel::encryption($rows['Proveedor_ID']) . '/" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
+                                <a href="' . SERVERURL . 'usuario-actualizar/' . mainModel::encryption($rows['Cuenta_Id']) . '/" class="action-icon"> <i class="mdi mdi-pencil"></i></a>
                             </td>
                             <td>
                                 <form class="FormularioAjax" action="' . SERVERURL . 'ajax/usuarioAjax.php" method="POST" data-form="delete" autocomplete="off">
-                                    <input type="hidden" name="proveedor_id_del" value="' . mainModel::encryption($rows['Proveedor_ID']) . '">
+                                    <input type="hidden" name="proveedor_id_del" value="' . mainModel::encryption($rows['Cuenta_Id']) . '">
                                     <button type="submit" class="btn action-icon">
                                         <i class="mdi mdi-delete"></i>
                                     </button>                      
