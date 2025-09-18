@@ -44,5 +44,20 @@ class proveedorModelo extends mainModel
     }
 
     // modelo para actualizar proveedor
-    protected static function actualizar_proveedor_modelo($datos) {}
+    protected static function actualizar_proveedor_modelo($datos) {
+
+        $sql = mainModel::conectar->prepare("UPDATE proveedor SET Proveedor_RUC = :Ruc , Proveedor_RazonSocial = :Razon , Proveedor_Direccion = :Dirección , Proveedor_Contacto = :Contacto , Proveedor_Telefono = :Telefono WHERE Proveedor_ID = :Id");
+
+        $sql->bindParam(":Ruc",$datos['Ruc']);
+        $sql->bindParam(":Razon",$datos['Razon']);
+        $sql->bindParam(":Direccion",$datos['Direccion']);
+        $sql->bindParam(":Contacto",$datos['Contacto']);
+        $sql->bindParam("Telefono",$datos['Telefono']);
+        $sql->bindParam("Id",$datos['Id']);
+
+        $sql->execute();
+
+        return $sql;
+
+    }
 }

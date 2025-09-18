@@ -20,6 +20,12 @@ if (isset($_POST['proveedor_ruc_reg']) || isset($_POST['proveedpr_id_del'])) {
     if (isset($_POST['proveedpr_id_del'])) {
         echo $ins_proveedor->eliminar_proveedor_controlador();
     }
+
+    // actualizar proveedor
+    if (isset($_POST['proveedor_id_up'])){
+        echo $ins_proveedor ->actualizar_provedor_controlador();
+
+    }
 } else {
     session_start(['name' => 'SCL']);
     session_unset();

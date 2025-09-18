@@ -294,7 +294,7 @@ class proveedorControlador extends proveedorModelo
                 "Titulo" => "Proveedor Eliminado",
                 "Texto" => "El Proveedor ha sido eliminado del sistema correctamente.",
                 "Icono" => "success"
-            ];
+            ];c
         } else {
             $alerta = [
                 "Alerta" => "simple",
@@ -318,6 +318,13 @@ class proveedorControlador extends proveedorModelo
         return proveedorModelo::datos_proveedor_modelo($tipo, $id);
     }
     // fin controlador seleccion de datos proveedor
+    //
     // controlador para actualizar los datos del proveedor
+
+    public function actualizar_provedor_controlador(){
+
+
+    }
+    //fin controlador actualizar datos del proveedor 
 
 }
