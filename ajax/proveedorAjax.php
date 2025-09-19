@@ -5,7 +5,7 @@ $peticionAjax = true;
 require_once "../config/APP.php";
 
 // re-direcciona al login cuando intente ingresar a las carpetas ajax
-if (isset($_POST['proveedor_ruc_reg']) || isset($_POST['proveedpr_id_del'])) {
+if (isset($_POST['proveedor_ruc_reg']) || isset($_POST['proveedpr_id_del']) || isset($_POST['proveedor_id_up'])) {
 
     // instancia al controlador
     require_once "../controller/proveedorControlador.php";
@@ -22,9 +22,8 @@ if (isset($_POST['proveedor_ruc_reg']) || isset($_POST['proveedpr_id_del'])) {
     }
 
     // actualizar proveedor
-    if (isset($_POST['proveedor_id_up'])){
-        echo $ins_proveedor ->actualizar_provedor_controlador();
-
+    if (isset($_POST['proveedor_id_up'])) {
+        echo $ins_proveedor->actualizar_proveedor_controlador();
     }
 } else {
     session_start(['name' => 'SCL']);

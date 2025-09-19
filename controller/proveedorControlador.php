@@ -151,7 +151,6 @@ class proveedorControlador extends proveedorModelo
         } else {
             $consulta = "SELECT SQL_CALC_FOUND_ROWS * FROM proveedor  ORDER BY Proveedor_RazonSocial ASC LIMIT $inicio, $registros";
         }
-
         $conexion = mainModel::conectar();
 
         $datos = $conexion->query($consulta);
@@ -294,7 +293,7 @@ class proveedorControlador extends proveedorModelo
                 "Titulo" => "Proveedor Eliminado",
                 "Texto" => "El Proveedor ha sido eliminado del sistema correctamente.",
                 "Icono" => "success"
-            ];c
+            ];
         } else {
             $alerta = [
                 "Alerta" => "simple",
@@ -321,10 +320,157 @@ class proveedorControlador extends proveedorModelo
     //
     // controlador para actualizar los datos del proveedor
 
-    public function actualizar_provedor_controlador(){
+    public function actualizar_proveedor_controlador()
+    {
+        // recupera el id del proveedor 
+        $id = mainModel::decryption($_POST['proveedor_id_up']);
+        $id = mainModel::limpiar_cadena($id);
 
+        // comprobar al proveedor existe la base de datos 
+        $check_proveedor = mainModel::ejecutar_consulta_simple("SELECT * FROM proveedor WHERE Proveedor_ID = '$id'");
 
+        if ($check_proveedor->rowCount() <= 0) {
+            $alerta = [
+                "Alerta" => "simple",
+                "Titulo" => "Ocurrió un error inesperado",
+                "Texto" => "No hemos encontrado al proveedor en el sistema.",
+                "Icono" => "error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        } else {
+            $campos = $check_proveedor->fetch();
+        }
+
+        // registrar datos para su actualizacion
+
+        $ruc = mainModel::limpiar_cadena($_POST['proveedor_ruc_up']);
+        $razonSocial = mainModel::limpiar_cadena($_POST['proveedor_razon_social_up']);
+        $direccion = mainModel::limpiar_cadena($_POST['proveedor_direccion_up']);
+        $contacto = mainModel::limpiar_cadena($_POST['proveedor_contacto_up']);
+        $telefono = mainModel::limpiar_cadena($_POST['proveedor_telefono_up']);
+
+        if ($ruc == "" || $razonSocial == "" || $direccion == "" || $contacto == "" || $telefono == "") {
+            $alerta = [
+                "Alerta" => "simple",
+                "Titulo" => "Ocurrió un error inesperado",
+                "Texto" => "No has llenado todos los campos que son obligatorios",
+                "Icono" => "error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
+
+        // verificar la integridad de los datos 
+        if (mainModel::verificar_datos("[0-9-]{11,20}", $ruc)) {
+            $alerta = [
+                "Alerta" => "simple",
+                "Titulo" => "Ocurrió un error inesperado",
+                "Texto" => "El Ruc no coincide con el formato solicitado",
+                "Icono" => "error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
+        if (mainModel::verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{4,100}", $razonSocial)) {
+            $alerta = [
+                "Alerta" => "simple",
+                "Titulo" => "Ocurrió un error inesperado",
+                "Texto" => "La Razon Social no coincide con el formato solicitado",
+                "Icono" => "error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
+        if (mainModel::verificar_datos("[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,#\- ]{1,190}", $direccion)) {
+            $alerta = [
+                "Alerta" => "simple",
+                "Titulo" => "Ocurrió un error inesperado",
+                "Texto" => "La Direccion del proveedor no coincide con el formato solicitado",
+                "Icono" => "error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
+        if (mainModel::verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{4,100}", $contacto)) {
+            $alerta = [
+                "Alerta" => "simple",
+                "Titulo" => "Ocurrió un error inesperado",
+                "Texto" => "El Nombre del Contacto no coincide con el formato solicitado",
+                "Icono" => "error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
+        if (mainModel::verificar_datos("[0-9()\+]{8,20}", $telefono)) {
+            $alerta = [
+                "Alerta" => "simple",
+                "Titulo" => "Ocurrió un error inesperado",
+                "Texto" => "El Telefono no coincide con el formato solicitado",
+                "Icono" => "error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
+        // verificación de valores unicos
+
+        // comprobar Ruc del Proveedor 
+        if ($ruc != $campos['Proveedor_RUC']) {
+            $check_ruc = mainModel::ejecutar_consulta_simple("SELECT Proveedor_RUC FROM proveedor WHERE Proveedor_RUC = '$ruc'");
+
+            if ($check_ruc->rowCount() > 0) {
+                $alerta = [
+                    "Alerta" => "simple",
+                    "Titulo" => "Ocurrió un error inesperado",
+                    "Texto" => "el Ruc del proveedor ingresado ya se encuentra registrado en el sistema.",
+                    "Icono" => "error"
+                ];
+                echo json_encode($alerta);
+                exit();
+            }
+        }
+        //comprobar privilegios 
+        session_start(['name' => 'SCL']);
+
+        if ($_SESSION['privilegio_scl'] < 1 || $_SESSION['privilegio_scl'] > 2) {
+
+            $alerta = [
+                "Alerta" => "simple",
+                "Titulo" => "Ocurrió un error inesperado",
+                "Texto" => "el usuario no tiene los privilegios necesarios para realizar esta acción.",
+                "Icono" => "error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
+
+        $datos_proveedor_up = [
+
+            "Ruc" => $ruc,
+            "Razon" => $razonSocial,
+            "Direccion" => $direccion,
+            "Contacto" => $contacto,
+            "Telefono" => $telefono,
+            "Id" => $id
+        ];
+
+        // corregir error de la actualizacion del proveedor
+        if (proveedorModelo::actualizar_proveedor_modelo($datos_proveedor_up)) {
+            $alerta = [
+                "Alerta" => "recargar",
+                "Titulo" => "Ocurrió un error inesperado",
+                "Texto" => "El Ruc no coincide con el formato solicitado",
+                "Icono" => "error"
+            ];
+        } else {
+            $alerta = [
+                "Alerta" => "simple",
+                "Titulo" => "Ocurrió un error inesperado",
+                "Texto" => "No se pudo actualizar el proveedor",
+                "Icono" => "error"
+            ];
+        }
+        echo json_encode($alerta);
     }
-    //fin controlador actualizar datos del proveedor 
-
 }
+    //fin controlador actualizar datos del proveedor 
