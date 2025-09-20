@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-12">
             <div class="page-title-box">
-                <h4 class="page-title">Busqueda de Usuarios</h4>
+                <h4 class="page-title">Busqueda de Proveedores</h4>
             </div>
         </div>
     </div>
@@ -17,13 +17,13 @@
                 <div class="card">
                     <div class="card-body">
                         <form class="form-neon FormularioAjax" action="<?php echo SERVERURL; ?>ajax/buscadorAjax.php" method="POST" data-form="default" autocomplete="off">
-                            <!-- input para enviar el tipo de modulo se envía los datos de búsqueda de usuarios -->
+                            <!-- input para enviar el tipo de modulo se envía los datos de búsqueda de proveedores -->
                             <input type="hidden" name="modulo" value="proveedor">
                             <div class="container-fluid">
                                 <div class="row justify-content-md-center">
                                     <div class="col-12 col-md-6">
                                         <div class="form-group">
-                                            <label for="inputSearch" class="bmd-label-floating">¿Qué usuario estas buscando?</label>
+                                            <label for="inputSearch" class="bmd-label-floating">¿Qué proveedor estas buscando?</label>
                                             <input type="text" class="form-control" name="busqueda_inicial" id="inputSearch" maxlength="30">
                                         </div>
                                     </div>

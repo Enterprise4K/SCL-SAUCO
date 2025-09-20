@@ -362,7 +362,7 @@ class proveedorControlador extends proveedorModelo
         }
 
         // verificar la integridad de los datos 
-        if (mainModel::verificar_datos("[0-9-]{11,20}", $ruc)) {
+        if (mainModel::verificar_datos("[0-9]{11}", $ruc)) {
             $alerta = [
                 "Alerta" => "simple",
                 "Titulo" => "Ocurrió un error inesperado",
@@ -454,13 +454,13 @@ class proveedorControlador extends proveedorModelo
             "Id" => $id
         ];
 
-        // corregir error de la actualizacion del proveedor
+        // corregir error de la actualizacion del proveedor  
         if (proveedorModelo::actualizar_proveedor_modelo($datos_proveedor_up)) {
             $alerta = [
                 "Alerta" => "recargar",
-                "Titulo" => "Ocurrió un error inesperado",
-                "Texto" => "El Ruc no coincide con el formato solicitado",
-                "Icono" => "error"
+                "Titulo" => "Proveedor Actualizado",
+                "Texto" => "Los datos del cliente han sido actualizados",
+                "Icono" => "success"
             ];
         } else {
             $alerta = [

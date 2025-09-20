@@ -34,7 +34,7 @@ if ($_SESSION['privilegio_scl'] < 1 || $_SESSION['privilegio_scl'] > 2) {
                                 </i>
                                 <div class="mb-3">
                                     <label class="form-label">RUC</label>
-                                    <input type="text" pattern="[0-9-]{11,20}" maxlength="11" class="form-control" name="proveedor_ruc_up" placeholder="Ruc" autocomplete="off" value="<?php echo $campos["Proveedor_RUC"]; ?>">
+                                    <input type="text" pattern="[0-9]{11}" maxlength="11" class="form-control" name="proveedor_ruc_up" placeholder="Ruc" autocomplete="off" value="<?php echo $campos["Proveedor_RUC"]; ?>">
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label" ">Razon Social</label>
