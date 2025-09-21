@@ -73,6 +73,12 @@
                         <span> Usuarios </span>
                     </a>
                 </li>
+                <li class="side-nav-item">
+                    <a href=" <?php echo SERVERURL; ?>empresa/" class="side-nav-link">
+                        <i class="uil-shop"></i>
+                        <span> Empresa </span>
+                    </a>
+                </li>
             <?php }; ?>
         </ul>
         <!-- End Sidebar -->
