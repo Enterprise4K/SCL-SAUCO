@@ -12,9 +12,9 @@
     require_once "./controller/empresaControlado.php";
     $ins_empresa = new empresaControlador();
 
-    $satos_empresa = $ins_empresa->datos_empresa_controlador();
+    $datos_empresa = $ins_empresa->datos_empresa_controlador();
 
-    if ($satos_empresa->rowCount() == 0) {
+    if ($datos_empresa->rowCount() == 0) {
     ?>
         <!-- formulario para registrar empresa -->
         <div class="row">
@@ -23,26 +23,27 @@
                     <div class="card-body">
                         <h4 class="header-title">Registrar Empresa</h4>
                         <p class="text-muted font-14">La empresa del Sistema aun no esta registrado, use el formulario para registrar a su empresa </p>
-                        <form>
+                        <form class="FormularioAjax" action="<?php echo SERVERURL; ?>ajax/empresaAjax.php" method="POST" data-form="save">
+                            <input type="hidden" name="proveedor_id_up" value="<?php echo $pagina[1]; ?>">>
                             <div class="mb-3">
-                                <label for="inputAddress" class="form-label">Razón Social: </label>
-                                <input type="text" class="form-control" id="inputAddress" placeholder="empresa sac">
+                                <label for="empresa_nombre" class="form-label">Razón Social: </label>
+                                <input type="text" pattern="[a-zA-z0-9áéíóúÁÉÍÓÚñÑ. ]{1,70}" name="empresa_nombre_reg" class=" form-control" id="empresa_nombre" placeholder="empresa sac" maxlength="70">
                             </div>
                             <div class="row g-2">
                                 <div class="mb-3 col-md-6">
-                                    <label for="inputEmail4" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+                                    <label for="empresa_email" class="form-label">Email</label>
+                                    <input type="email" name="empresa_email_reg" class="form-control" id="empresa_email" placeholder="Email" maxlength="70">
                                 </div>
                                 <div class="mb-3 col-md-6">
-                                    <label class="form-label">Teléfono</label>
-                                    <input type="text" class="form-control" data-toggle="input-mask" data-mask-format="(+51) 000-000-000">
+                                    <label class="form-label" for="empresa_telefono">Teléfono</label>
+                                    <input type="text" class="form-control" pattern="[0-9()+]{8,20}" name="empresa_telefono_reg" id="empresa_telefono" maxlength="20" data-toggle="input-mask" data-mask-format="(+51) 000-000-000">
                                     <span class="font-13 text-muted">e.g "(+51) 000-000-000"</span>
                                 </div>
                             </div>
 
                             <div class="mb-3">
-                                <label for="inputAddress" class="form-label"> Direccion</label>
-                                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                                <label for="empresa_direccion" class="form-label"> Direccion</label>
+                                <input type="text" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,#\- ]{1,190}" name="empresa_direccion_reg" class="form-control" id="empresa_direccion" maxlength="190" placeholder="1234 Main St">
                             </div>
                             <button type="submit" class="btn btn-primary">Guardar</button>
                         </form>
@@ -51,7 +52,10 @@
             </div>
         </div>
     <?php
-    } elseif ($satos_empresa->rowCount() == 1 && $_SESSION['privilegio_scl'] == 1 || $_SESSION['privilegio_scl'] == 2) { ?>
+    } elseif ($datos_empresa->rowCount() == 1 && $_SESSION['privilegio_scl'] == 1 || $_SESSION['privilegio_scl'] == 2) {
+        $campos = $datos_empresa->fetch();
+    ?>
+        <!-- MEJORAR LA VIZUALIZACION DEL CARD DE LA empreaa para la actualizacion de la empresa minuto 11:38 -->
         <div class="row">
             <div class="col-12">
                 <div class="card text-center">
