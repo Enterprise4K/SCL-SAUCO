@@ -24,7 +24,7 @@
                         <h4 class="header-title">Registrar Empresa</h4>
                         <p class="text-muted font-14">La empresa del Sistema aun no esta registrado, use el formulario para registrar a su empresa </p>
                         <form class="FormularioAjax" action="<?php echo SERVERURL; ?>ajax/empresaAjax.php" method="POST" data-form="save">
-                            <input type="hidden" name="proveedor_id_up" value="<?php echo $pagina[1]; ?>">>
+                            <input type="hidden" name="proveedor_id_up" value="<?php echo $pagina[1]; ?>">
                             <div class="mb-3">
                                 <label for="empresa_nombre" class="form-label">Razón Social: </label>
                                 <input type="text" pattern="[a-zA-z0-9áéíóúÁÉÍÓÚñÑ. ]{1,70}" name="empresa_nombre_reg" class=" form-control" id="empresa_nombre" placeholder="empresa sac" maxlength="70">
@@ -78,8 +78,10 @@
                             <p class="text-muted mb-2 font-13"><strong>Contacto :</strong> <span class="ms-2">Geneva
                                     D. McKnight</span></p>
 
-                            <p class="text-muted mb-2 font-13"><strong>Teléfono :</strong><span class="ms-2">(123)
-                                    123 1234</span></p>
+                            <p class="text-muted mb-2 font-13"><strong>Teléfono :</strong>
+                                < class="ms-2">(123)
+                                    123 1234</ span>
+                            </p>
 
                             <p class="text-muted mb-2 font-13"><strong>Email :</strong> <span class="ms-2 ">user@email.domain</span></p>
 
