@@ -23,8 +23,8 @@
                     <div class="card-body">
                         <h4 class="header-title">Registrar Empresa</h4>
                         <p class="text-muted font-14">La empresa del Sistema aun no esta registrado, use el formulario para registrar a su empresa </p>
-                        <form class="FormularioAjax" action="<?php echo SERVERURL; ?>ajax/empresaAjax.php" method="POST" data-form="save">
-                            <input type="hidden" name="proveedor_id_up" value="<?php echo $pagina[1]; ?>">
+                        <form class="FormularioAjax" action="<?php echo SERVERURL; ?>ajax/empresaAjax.php" method="POST" data-form="save" autocomplete="off">
+
                             <div class="mb-3">
                                 <label for="empresa_nombre" class="form-label">Razón Social: </label>
                                 <input type="text" pattern="[a-zA-z0-9áéíóúÁÉÍÓÚñÑ. ]{1,70}" name="empresa_nombre_reg" class=" form-control" id="empresa_nombre" placeholder="empresa sac" maxlength="70">
@@ -65,7 +65,33 @@
 
                         <h4 class="mb-0 mt-2">El Sauco Comedores y Hospedaje SAC</h4>
                         <br>
+                        <!-- formulario de actualizar los datos de la empresa  -->
+                        <form class="FormularioAjax" action="<?php echo SERVERURL; ?>ajax/empresaAjax.php" method="POST" data-form="update" autocomplete="off">
+                            <input type="hidden" name="empresa_id_up" value="<?php echo $campos['empresa_Id']; ?>">
+                            <div class="mb-3">
+                                <label for="empresa_nombre" class="form-label">Razón Social: </label>
+                                <input type="text" pattern="[a-zA-z0-9áéíóúÁÉÍÓÚñÑ. ]{1,70}" name="empresa_nombre_up" class=" form-control" id="empresa_nombre" placeholder="empresa sac" maxlength="70" value="<?php echo $campos['empresa_nombre']; ?>">
+                            </div>
+                            <div class="row g-2">
+                                <div class="mb-3 col-md-6">
+                                    <label for="empresa_email" class="form-label">Email</label>
+                                    <input type="email" name="empresa_email_up" class="form-control" id="empresa_email" placeholder="Email" maxlength="70" value="<?php echo $campos['empresa_email']; ?>">
+                                </div>
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label" for="empresa_telefono">Teléfono</label>
+                                    <input type="text" class="form-control" pattern="[0-9()+]{8,20}" name="empresa_telefono_reg" id="empresa_telefono" maxlength="20" data-toggle="input-mask" data-mask-format="(+51) 000-000-000" value="<?php echo $campos['empresa_telefono']; ?>">
+                                    <span class="font-13 text-muted">e.g "(+51) 000-000-000"</span>
+                                </div>
+                            </div>
 
+                            <div class="mb-3">
+                                <label for="empresa_direccion" class="form-label"> Direccion</label>
+                                <input type="text" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,#\- ]{1,190}" name="empresa_direccion_reg" class="form-control" id="empresa_direccion" maxlength="190" placeholder="1234 Main St" value="<?php echo $campos['empresa_direccion']; ?>">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+
+                        </form>
+                        <!-- fin de formulario de datos de la empresa -->
                         <button type="button" class="btn btn-success btn-sm mb-2">Actualizar</button>
                         <button type="button" class="btn btn-danger btn-sm mb-2">Message</button>
 
@@ -92,6 +118,6 @@
             </div> <!-- end col-->
         </div>
     <?php } else { ?>
-        <!-- erro -->
+        <!-- error cuando no encuentra a la empresa o error en el modelo o controlador-->
     <?php } ?>
 </div>
