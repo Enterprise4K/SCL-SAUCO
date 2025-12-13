@@ -18,7 +18,7 @@ class empresaModelo extends mainModel
     {
         // ejecutar consulta para agregar
 
-        $sql = mainModel::conectar()->prepare("INSERT INTO empresa(empresa_nombre, empresa_email, empresa_telefono, empresa_direccion)VALUES(:nombre, :email, :telefono, :direccion)");
+        $sql = mainModel::conectar()->prepare("INSERT INTO empresa (empresa_nombre, empresa_email, empresa_telefono, empresa_direccion)VALUES(:nombre , :email , :telefono , :direccion)");
 
         $sql->bindParam(":nombre", $datos['nombre']);
         $sql->bindParam(":email", $datos['email']);

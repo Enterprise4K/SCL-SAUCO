@@ -9,7 +9,7 @@
     </div>
     <!-- fin titulo -->
     <?php
-    require_once "./controller/empresaControlado.php";
+    require_once "./controller/empresaControlador.php";
     $ins_empresa = new empresaControlador();
 
     $datos_empresa = $ins_empresa->datos_empresa_controlador();
@@ -36,8 +36,8 @@
                                 </div>
                                 <div class="mb-3 col-md-6">
                                     <label class="form-label" for="empresa_telefono">Teléfono</label>
-                                    <input type="text" class="form-control" pattern="[0-9()+]{8,20}" name="empresa_telefono_reg" id="empresa_telefono" maxlength="20" data-toggle="input-mask" data-mask-format="(+51) 000-000-000">
-                                    <span class="font-13 text-muted">e.g "(+51) 000-000-000"</span>
+                                    <input type="text" class="form-control" pattern="[0-9()+]{8,20}" name="empresa_telefono_reg" id="empresa_telefono" maxlength="9" data-toggle="input-mask">
+                                    <!-- <span class="font-13 text-muted">e.g "(+51) 000-000-000"</span> -->
                                 </div>
                             </div>
 
@@ -63,7 +63,7 @@
                         <!-- <img src="assets/images/users/avatar-1.jpg" class="rounded-circle avatar-lg img-thumbnail"
                         alt="profile-image"> -->
 
-                        <h4 class="mb-0 mt-2">El Sauco Comedores y Hospedaje SAC</h4>
+                        <h4 class="mb-0 mt-2"><?php echo $campos['empresa_nombre']; ?></h4>
                         <br>
                         <!-- formulario de actualizar los datos de la empresa  -->
                         <form class="FormularioAjax" action="<?php echo SERVERURL; ?>ajax/empresaAjax.php" method="POST" data-form="update" autocomplete="off">

@@ -40,7 +40,7 @@ class empresaControlador extends empresaModelo
 
         // verificando integridad de los datos
 
-        if (mainModel::verificar_datos("a-zA-z0-9áéíóúÁÉÍÓÚñÑ. ]{1,70}", $nombre)) {
+        if (mainModel::verificar_datos("[a-zA-z0-9áéíóúÁÉÍÓÚñÑ. ]{1,70}", $nombre)) {
             $alerta = [
                 "Alerta" => "simple",
                 "Titulo" => "Ocurrió un error inesperado",
@@ -84,5 +84,46 @@ class empresaControlador extends empresaModelo
             echo json_encode($alerta);
             exit();
         }
+
+        // comprobar si la empresa esta registrada
+
+        $check_empresa = mainModel::ejecutar_consulta_simple("SELECT empresa_Id FROM empresa ");
+
+        if ($check_empresa->rowCount() >= 1) {
+            $alerta = [
+                "Alerta" => "simple",
+                "Titulo" => "Ocurrió un error inesperado",
+                "Texto" => "Ya existe una empresa registrada, ya no puedes registrar una mas.",
+                "Icono" => "error"
+            ];
+            echo json_encode($alerta);
+            exit();
+        }
+
+        $datos_empresa_reg = [
+            "nombre" => $nombre,
+            "email" => $email,
+            "telefono" => $telefono,
+            "direccion" => $direccion
+        ];
+
+        $agregar_empresa = empresaModelo::agregar_empresa_modelo($datos_empresa_reg);
+
+        if ($agregar_empresa->rowCount() == 1) {
+            $alerta = [
+                "Alerta" => "recargar",
+                "Titulo" => "Empresa Registrada",
+                "Texto" => "Los datos de la empresa se registraron con exito.",
+                "Icono" => "success"
+            ];
+        } else {
+            $alerta = [
+                "Alerta" => "simple",
+                "Titulo" => "Ocurrió un error inesperado",
+                "Texto" => "No se realizo el registro correctamente, por favor intentar nuevamente.",
+                "Icono" => "error"
+            ];
+        }
+        echo json_encode($alerta);
     }
 }
