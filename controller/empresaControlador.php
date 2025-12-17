@@ -126,4 +126,8 @@ class empresaControlador extends empresaModelo
         }
         echo json_encode($alerta);
     }
+    // fin controlador agregar empresa
+
+    // controlador de actualizar empresa 
+    public function actualizar_empresa_controlador() {}
 }

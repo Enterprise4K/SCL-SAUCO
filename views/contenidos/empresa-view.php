@@ -60,58 +60,69 @@
             <div class="col-12">
                 <div class="card text-center">
                     <div class="card-body">
-                        <!-- <img src="assets/images/users/avatar-1.jpg" class="rounded-circle avatar-lg img-thumbnail"
-                        alt="profile-image"> -->
+
+                        <!-- imagen de la empresa -->
+                        <img src="assets/images/users/avatar-1.jpg" class="rounded-circle avatar-lg img-thumbnail"
+                            alt="profile-image">
 
                         <h4 class="mb-0 mt-2"><?php echo $campos['empresa_nombre']; ?></h4>
                         <br>
-                        <!-- formulario de actualizar los datos de la empresa  -->
-                        <form class="FormularioAjax" action="<?php echo SERVERURL; ?>ajax/empresaAjax.php" method="POST" data-form="update" autocomplete="off">
-                            <input type="hidden" name="empresa_id_up" value="<?php echo $campos['empresa_Id']; ?>">
-                            <div class="mb-3">
-                                <label for="empresa_nombre" class="form-label">Razón Social: </label>
-                                <input type="text" pattern="[a-zA-z0-9áéíóúÁÉÍÓÚñÑ. ]{1,70}" name="empresa_nombre_up" class=" form-control" id="empresa_nombre" placeholder="empresa sac" maxlength="70" value="<?php echo $campos['empresa_nombre']; ?>">
-                            </div>
-                            <div class="row g-2">
-                                <div class="mb-3 col-md-6">
-                                    <label for="empresa_email" class="form-label">Email</label>
-                                    <input type="email" name="empresa_email_up" class="form-control" id="empresa_email" placeholder="Email" maxlength="70" value="<?php echo $campos['empresa_email']; ?>">
-                                </div>
-                                <div class="mb-3 col-md-6">
-                                    <label class="form-label" for="empresa_telefono">Teléfono</label>
-                                    <input type="text" class="form-control" pattern="[0-9()+]{8,20}" name="empresa_telefono_reg" id="empresa_telefono" maxlength="20" data-toggle="input-mask" data-mask-format="(+51) 000-000-000" value="<?php echo $campos['empresa_telefono']; ?>">
-                                    <span class="font-13 text-muted">e.g "(+51) 000-000-000"</span>
-                                </div>
-                            </div>
+                        <!-- formulario de perfil de empresa modal -->
 
-                            <div class="mb-3">
-                                <label for="empresa_direccion" class="form-label"> Direccion</label>
-                                <input type="text" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,#\- ]{1,190}" name="empresa_direccion_reg" class="form-control" id="empresa_direccion" maxlength="190" placeholder="1234 Main St" value="<?php echo $campos['empresa_direccion']; ?>">
-                            </div>
-                            <button type="submit" class="btn btn-primary">Guardar</button>
+                        <div id="standard-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title" id="standard-modalLabel">Modal Heading</h4>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form class="FormularioAjax" action="<?php echo SERVERURL; ?>ajax/empresaAjax.php" method="POST" data-form="update" autocomplete="off">
+                                            <input type="hidden" name="empresa_id_up" value="<?php echo $campos['empresa_Id']; ?>">
+                                            <div class="mb-3">
+                                                <label for="empresa_nombre" class="form-label">Razón Social: </label>
+                                                <input type="text" pattern="[a-zA-z0-9áéíóúÁÉÍÓÚñÑ. ]{1,70}" name="empresa_nombre_up" class=" form-control" id="empresa_nombre" placeholder="empresa sac" maxlength="70" value="<?php echo $campos['empresa_nombre']; ?>">
+                                            </div>
+                                            <div class="row g-2">
+                                                <div class="mb-3 col-md-6">
+                                                    <label for="empresa_email" class="form-label">Email</label>
+                                                    <input type="email" name="empresa_email_up" class="form-control" id="empresa_email" placeholder="Email" maxlength="70" value="<?php echo $campos['empresa_email']; ?>">
+                                                </div>
+                                                <div class="mb-3 col-md-6">
+                                                    <label class="form-label" for="empresa_telefono">Teléfono</label>
+                                                    <input type="text" class="form-control" pattern="[0-9()+]{8,20}" name="empresa_telefono_reg" id="empresa_telefono" maxlength="20" data-toggle="input-mask" data-mask-format="(+51) 000-000-000" value="<?php echo $campos['empresa_telefono']; ?>">
+                                                    <span class="font-13 text-muted">e.g "(+51) 000-000-000"</span>
+                                                </div>
+                                            </div>
 
-                        </form>
-                        <!-- fin de formulario de datos de la empresa -->
-                        <button type="button" class="btn btn-success btn-sm mb-2">Actualizar</button>
-                        <button type="button" class="btn btn-danger btn-sm mb-2">Message</button>
+                                            <div class="mb-3">
+                                                <label for="empresa_direccion" class="form-label"> Direccion</label>
+                                                <input type="text" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,#\- ]{1,190}" name="empresa_direccion_reg" class="form-control" id="empresa_direccion" maxlength="190" placeholder="1234 Main St" value="<?php echo $campos['empresa_direccion']; ?>">
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Guardar</button>
+
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div><!-- /.modal -->
+
+                        <!-- formulario de perfil de empresa fin modal -->
+
+                        <button type="button" class="btn btn-success btn-sm mb-2" data-bs-toggle="modal" data-bs-target="#standard-modal">Actualizar</button>
 
                         <div class="text-start mt-3">
-                            <!-- <h4 class="font-13 text-uppercase">About Me :</h4>
-                        <p class="text-muted font-13 mb-3">
-                            Hi I'm Johnathn Deo,has been the industry's standard dummy text ever since the
-                            1500s, when an unknown printer took a galley of type.
-                        </p> -->
-                            <p class="text-muted mb-2 font-13"><strong>Contacto :</strong> <span class="ms-2">Geneva
-                                    D. McKnight</span></p>
-
                             <p class="text-muted mb-2 font-13"><strong>Teléfono :</strong>
-                                < class="ms-2">(123)
-                                    123 1234</ span>
+                                <span class="ms-2"><?php echo $campos['empresa_telefono']; ?></span>
                             </p>
 
-                            <p class="text-muted mb-2 font-13"><strong>Email :</strong> <span class="ms-2 ">user@email.domain</span></p>
+                            <p class="text-muted mb-2 font-13"><strong>Email :</strong> <span class="ms-2 "><?php echo $campos['empresa_email']; ?></span></p>
 
-                            <p class="text-muted mb-1 font-13"><strong>Dirección :</strong> <span class="ms-2">USA</span></p>
+                            <p class="text-muted mb-1 font-13"><strong>Dirección :</strong> <span class="ms-2"><?php echo $campos['empresa_direccion']; ?></span></p>
                         </div>
                     </div> <!-- end card-body -->
                 </div> <!-- end card -->
