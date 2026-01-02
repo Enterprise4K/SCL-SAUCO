@@ -129,5 +129,13 @@ class empresaControlador extends empresaModelo
     // fin controlador agregar empresa
 
     // controlador de actualizar empresa 
-    public function actualizar_empresa_controlador() {}
+    public function actualizar_empresa_controlador()
+    {
+        // recibimos el id
+        $id = mainModel::decryption($_POST['empresa_id_up']);
+        $id = mainModel::limpiar_cadena($id);
+
+        // comprobar el usuario en la base de datos
+        $check_user = mainModel::ejecutar_consulta_simple("SELECT * FROM  empresa WHERE empresa_Id");
+    }
 }

@@ -55,7 +55,7 @@
     } elseif ($datos_empresa->rowCount() == 1 && $_SESSION['privilegio_scl'] == 1 || $_SESSION['privilegio_scl'] == 2) {
         $campos = $datos_empresa->fetch();
     ?>
-        <!-- MEJORAR LA VIZUALIZACION DEL CARD DE LA empreaa para la actualizacion de la empresa minuto 11:38 -->
+        <!-- MEJORAR LA VIZUALIZACION DEL CARD DE LA empresa para la actualización de la empresa minuto 11:38 -->
         <div class="row">
             <div class="col-12">
                 <div class="card text-center">
