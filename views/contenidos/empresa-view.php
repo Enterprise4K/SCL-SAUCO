@@ -90,22 +90,18 @@
                                                 </div>
                                                 <div class="mb-3 col-md-6">
                                                     <label class="form-label" for="empresa_telefono">Teléfono</label>
-                                                    <input type="text" class="form-control" pattern="[0-9()+]{8,20}" name="empresa_telefono_reg" id="empresa_telefono" maxlength="20" data-toggle="input-mask" data-mask-format="(+51) 000-000-000" value="<?php echo $campos['empresa_telefono']; ?>">
-                                                    <span class="font-13 text-muted">e.g "(+51) 000-000-000"</span>
+                                                    <input type="text" class="form-control" pattern="[0-9()+]{8,20}" name="empresa_telefono_up" id="empresa_telefono" maxlength="20" data-toggle="input-mask" value="<?php echo $campos['empresa_telefono']; ?>">
+
                                                 </div>
                                             </div>
 
                                             <div class="mb-3">
                                                 <label for="empresa_direccion" class="form-label"> Direccion</label>
-                                                <input type="text" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,#\- ]{1,190}" name="empresa_direccion_reg" class="form-control" id="empresa_direccion" maxlength="190" placeholder="1234 Main St" value="<?php echo $campos['empresa_direccion']; ?>">
+                                                <input type="text" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,#\- ]{1,190}" name="empresa_direccion_up" class="form-control" id="empresa_direccion" maxlength="190" placeholder="1234 Main St" value="<?php echo $campos['empresa_direccion']; ?>">
                                             </div>
                                             <button type="submit" class="btn btn-primary">Guardar</button>
 
                                         </form>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Save changes</button>
                                     </div>
                                 </div><!-- /.modal-content -->
                             </div><!-- /.modal-dialog -->
