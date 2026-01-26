@@ -758,7 +758,7 @@ class usuarioControlador extends usuarioModelo
         if ($actualizar_usuario->rowCount() == 1) {
             $alerta = [
                 "Alerta" => "recargar",
-                "Titulo" => "Usuario registrado",
+                "Titulo" => "Usuario Actualizado",
                 "Texto" => "Los datos del usuario han sido actualizados con éxito.",
                 "Icono" => "success"
             ];
