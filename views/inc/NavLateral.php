@@ -44,7 +44,7 @@
             <li class="side-nav-title side-nav-item">Gestión</li>
             <!-- Ordenes de compra - modulo -->
             <li class="side-nav-item">
-                <a href="<?php echo SERVERURL; ?>oc-year/" class="side-nav-link">
+                <a href="<?php echo SERVERURL; ?>oc-list/" class="side-nav-link">
                     <i class="uil-file-contract-dollar"></i>
                     <span> Ordenes de Compra </span>
                 </a>

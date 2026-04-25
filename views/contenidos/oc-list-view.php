@@ -29,12 +29,15 @@
                         <div class="col-xl-8">
                             <form class="row gy-2 gx-2 align-items-center justify-content-xl-start justify-content-between">
                                 <div class="col-auto">
-                                    <label for="inputPassword2" class="visually-hidden">Buscar</label>
-                                    <input type="search" class="form-control" id="inputPassword2" placeholder="Buscar...">
+                                    <div class="d-flex align-items-center">
+                                        <label for="status-select" class="me-2">Año</label>
+                                        <select class="form-select" id="yearSelect">
+                                        </select>
+                                    </div>
                                 </div>
                                 <div class="col-auto">
                                     <div class="d-flex align-items-center">
-                                        <label for="status-select" class="me-2">Estado</label>
+                                        <label for="status-select" class="me-2">Mes</label>
                                         <select class="form-select" id="status-select">
                                             <option selected>Elegir...</option>
                                             <option value="1">Pagado</option>

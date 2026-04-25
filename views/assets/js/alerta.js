@@ -1,6 +1,6 @@
 // seleccionamos todos los formularios con la clase ajax
 const formulario_ajax = document.querySelectorAll(".FormularioAjax");
-
+        
 function enviar_formulario_ajax(e) {
     e.preventDefault();
 

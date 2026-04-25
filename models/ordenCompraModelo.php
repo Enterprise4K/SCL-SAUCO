@@ -10,6 +10,6 @@ class ordenCompraModelo extends mainModel
     protected static function agregar_ordenCompra_modelo($datos)
     {
 
-        //$sql = mainModel::conectar()->prepare("INSERT INTO ");
+        $sql = mainModel::conectar()->prepare("INSERT INTO ");
     }
 }
