@@ -106,7 +106,7 @@ require_once "./controller/proveedorControlador.php";
                                                                         echo '<option value="' . $rows['Proveedor_RUC'] . '">' . $rows['Proveedor_RazonSocial'] . '</option>';
                                                                     }
                                                                 } else {
-                                                                    echo '<option value="">Error al cargar los datos del sistema, comunicarse con el área de sistemas</option>';
+                                                                    echo '<option value="">Error al cargar los datos del sistema, comunicarse con el programador</option>';
                                                                 }
                                                                 ?>
                                                             </select>
