@@ -1,8 +1,8 @@
 <?php
 
 $peticionAjax = true;
-
 require_once "../config/APP.php";
+
 // re-direcciona al login cuando intente ingresar a las carpetas ajax
 if (isset($_POST['empresa_nombre_reg']) || isset($_POST['empresa_id_up'])) {
 

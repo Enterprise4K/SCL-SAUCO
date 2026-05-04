@@ -125,6 +125,8 @@ class empresaControlador extends empresaModelo
             ];
         }
         echo json_encode($alerta);
+
+        return $agregar_empresa;
     }
     // fin controlador agregar empresa
 
@@ -235,5 +237,7 @@ class empresaControlador extends empresaModelo
             ];
         }
         echo json_encode($alerta);
+
+        return empresaModelo::actualizar_empresa_modelo($datos_empresa_up);
     }
 }

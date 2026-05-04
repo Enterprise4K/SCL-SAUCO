@@ -1,3 +1,7 @@
+<?php
+require_once "./controller/ordenCompraControlador.php";
+require_once "./controller/proveedorControlador.php";
+?>
 <!-- Start Content-->
 <div class="container-fluid">
 
@@ -27,7 +31,7 @@
                     <div class="row mb-2">
                         <!-- BUSCADOR Y FILTROS -->
                         <div class="col-xl-8">
-                            <form class="row gy-2 gx-2 align-items-center justify-content-xl-start justify-content-between">
+                            <form form class="FormularioAjax" action="<?php echo SERVERURL; ?>ajax/ordenCompraAjax.php" method="POST" data-form="save" autocomplete="off">
                                 <div class="col-auto">
                                     <div class="d-flex align-items-center">
                                         <label for="status-select" class="me-2">Año</label>
@@ -88,12 +92,23 @@
                                                         <div class="mb-3">
                                                             <label for="example-select" class="form-label">Proveedores</label>
                                                             <select class="form-select" id="example-select">
-                                                                <option value="">Seleccionar...</option>
-                                                                <option>Comercial Perulux</option>
-                                                                <option>Lumacza</option>
-                                                                <option>Mallquis</option>
-                                                                <option>Distribuidora Mercurio</option>
-                                                                <option>Marpier</option>
+
+                                                                <?php
+                                                                $inst_proveedor = new proveedorControlador();
+                                                                // Corregido: Asignamos el resultado a la variable
+                                                                $check_proveedor = $inst_proveedor->datos_proveedor_controlador("Todos", "");
+
+                                                                if ($check_proveedor->rowCount() >= 1) {
+                                                                    // Es mejor usar fetchAll o un bucle while para recorrer resultados
+                                                                    $datos = $check_proveedor->fetchAll();
+
+                                                                    foreach ($datos as $rows) {
+                                                                        echo '<option value="' . $rows['Proveedor_RUC'] . '">' . $rows['Proveedor_RazonSocial'] . '</option>';
+                                                                    }
+                                                                } else {
+                                                                    echo '<option value="">Error al cargar los datos del sistema, comunicarse con el área de sistemas</option>';
+                                                                }
+                                                                ?>
                                                             </select>
                                                         </div>
                                                         <div class="mb-3">

@@ -38,7 +38,10 @@ class proveedorModelo extends mainModel
             $sql->bindParam(":ID", $id);
         } else if ($tipo == "Conteo") {
             $sql = mainModel::conectar()->prepare("SELECT Proveedor_ID FROM proveedor");
+        } else if ($tipo == "Todos") {
+            $sql = mainModel::conectar()->prepare("SELECT * FROM proveedor");
         }
+
         $sql->execute();
         return $sql;
     }

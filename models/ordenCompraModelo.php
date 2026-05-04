@@ -4,7 +4,13 @@ require_once "./models/mainModel.php";
 class ordenCompraModelo extends mainModel
 {
 
+    protected static function datos_ordenCompra_modelo()
+    {
+        $sql = mainModel::conectar()->prepare("SELECT * FROM ordenCompra");
+        $sql->execute();
 
+        return $sql;
+    }
     // modelo para agregar orden de compra 
 
     protected static function agregar_ordenCompra_modelo($datos)
